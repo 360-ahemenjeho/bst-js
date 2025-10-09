@@ -1,4 +1,6 @@
 {
+  "name": "bst-js",
+  "type": "module",
   "devDependencies": {
     "typescript": "^5.9.3"
   }

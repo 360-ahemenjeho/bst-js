@@ -8,7 +8,7 @@ class Node {
   }
 }
 
-class Tree {
+export class Tree {
   root: Node | null;
 
   constructor(list: number[]) {
@@ -17,7 +17,6 @@ class Tree {
 
   insert(root: Node | null, data: number): void {
     function insertRoot(root: Node | null, data: number): Node {
-      console.log("current root -> ", root);
       if (root === null) {
         return new Node(data);
       }
@@ -36,7 +35,6 @@ class Tree {
     }
 
     const result = insertRoot(root, data);
-    console.log("result => ", result);
     this.root = result;
   }
 }
@@ -62,7 +60,7 @@ function buildTree(list: number[] = []): Node | null {
   return build(sorted);
 }
 
-function prettyPrint(
+export function prettyPrint(
   node: Node | null,
   prefix: string = "",
   isLeft: boolean = true
@@ -78,14 +76,3 @@ function prettyPrint(
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 }
-
-// Example usage
-const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-const treeTwo = new Tree([3, 2, 1]);
-
-console.log("root", treeTwo.root);
-prettyPrint(treeTwo.root);
-
-treeTwo.insert(treeTwo.root, 4);
-console.log("root", treeTwo.root);
-prettyPrint(treeTwo.root);
