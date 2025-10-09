@@ -1,6 +1,9 @@
 {
   "name": "bst-js",
   "type": "module",
+  "scripts": {
+    "test": "tsx --test"
+  },
   "devDependencies": {
     "@types/node": "^24.7.0",
     "typescript": "^5.9.3"
