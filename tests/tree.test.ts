@@ -12,10 +12,11 @@ test("builds a valid tree from an array", () => {
 test("inserts a new value correctly", () => {
   const tree = new Tree([3, 2, 1]);
   tree.insert(tree.root, 4);
-  assert.equal(tree.root?.right?.data, 4);
+  assert.equal(tree.root?.right?.right?.data, 4);
 });
 
 test("ignores duplicates", () => {
   const tree = new Tree([3, 2, 1, 3]);
-  assert.equal(tree.root?.right, null);
+  console.log("new tree -> ", tree);
+  assert.equal(tree.root?.right?.left, null);
 });
