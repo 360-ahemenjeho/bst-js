@@ -33,11 +33,10 @@ export class Tree {
 
   /**
    * Inserts a new value into the tree.
-   * @param {Node|null} root - The current root node.
    * @param {number} data - The value to insert.
    * @returns {void}
    */
-  insert(root, data) {
+  insert(data) {
     /**
      * Recursively inserts a new value into the correct position in the tree.
      * @private
@@ -63,7 +62,7 @@ export class Tree {
       return node;
     }
 
-    const result = _insertRecursive(root, data);
+    const result = _insertRecursive(this.root, data);
     this.root = result;
   }
 }
