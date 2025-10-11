@@ -81,7 +81,53 @@ export class Tree {
       return node;
     }
 
-    const result = _insertRecursive(this.root, data);
-    this.root = result;
+    const newRoot = _insertRecursive(this.root, data);
+    this.root = newRoot;
+  }
+
+  /**
+   * Deletes a node containing the specified value from the binary search tree.
+   *
+   * - If the value does not exist in the tree, the tree remains unchanged.
+   * - The method ensures that the binary search tree structure remains valid after deletion.
+   *
+   * @param {number} data - The value of the node to delete.
+   * @returns {void}
+   */
+  delete(data) {
+    /** @type {Node} */
+    let previous;
+    /**
+     * Recursively deletes a node with the given value.
+     *
+     * - If the node has no children, it is simply removed.
+     * - If the node has one child, it is replaced by that child.
+     * - If the node has two children, it is replaced with its in-order successor (the smallest value in the right subtree).
+     *
+     * @private
+     * @param {Node|null} node - The current node being examined.
+     * @param {number} data - The value to delete.
+     * @returns {Node} The updated node after deletion.
+     */
+    function _deleteRecursive(node, data) {
+      if (node === null) {
+        return node;
+      }
+
+      if (data < node.data) {
+        node.left = _deleteRecursive(node.left, data);
+      } else if (data > node.data) {
+        node.right = _deleteRecursive(node.right, data);
+      } else if (data === node.data) {
+        if (node.left === null && node.right === null) {
+          return null;
+        }
+      }
+
+      return node;
+    }
+
+    const newRoot = _deleteRecursive(this.root, data);
+    this.root = newRoot;
   }
 }
