@@ -11,7 +11,7 @@ test("builds a valid tree from an array", () => {
 
 test("inserts a new value correctly", () => {
   const tree = new Tree([3, 2, 1]);
-  tree.insert(tree.root, 4);
+  tree.insert(4);
   assert.equal(tree.root?.right?.right?.data, 4);
 });
 
