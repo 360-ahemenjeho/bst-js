@@ -22,9 +22,7 @@ test("ignores duplicates", () => {
 
 test("delete leaf node", () => {
   const tree = new Tree([2, 3, 1, 4]);
-  console.log("tree before -> ", tree.root);
   tree.delete(1);
   const newTree = tree.root;
-  console.log("tree after -> ", tree.root);
   assert.equal(newTree.left.left, null);
 });
