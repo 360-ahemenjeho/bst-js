@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { Tree } from "../src/tree.ts";
+import { Tree } from "../src/tree.js";
 
 test("builds a valid tree from an array", () => {
   const tree = new Tree([3, 1, 2]);
@@ -17,6 +17,5 @@ test("inserts a new value correctly", () => {
 
 test("ignores duplicates", () => {
   const tree = new Tree([3, 2, 1, 3]);
-  console.log("new tree -> ", tree);
   assert.equal(tree.root?.right?.left, null);
 });
