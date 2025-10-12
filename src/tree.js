@@ -95,8 +95,6 @@ export class Tree {
    * @returns {void}
    */
   delete(data) {
-    /** @type {Node} */
-    let previous;
     /**
      * Recursively deletes a node with the given value.
      *
@@ -121,6 +119,14 @@ export class Tree {
       } else if (data === node.data) {
         if (node.left === null && node.right === null) {
           return null;
+        }
+
+        if (node.left && !node.right) {
+          return node.left;
+        }
+
+        if (node.right && !node.left) {
+          return node.right;
         }
       }
 
