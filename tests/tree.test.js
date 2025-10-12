@@ -26,3 +26,11 @@ test("delete leaf node", () => {
   const newTree = tree.root;
   assert.equal(newTree.left.left, null);
 });
+
+test("delete single child node", () => {
+  const tree = new Tree([2, 3, 1, 4]);
+  tree.delete(2);
+  const newTree = tree.root;
+  console.log("new tree -> ", newTree);
+  assert.equal(newTree.left.data, 1);
+});
