@@ -1,4 +1,4 @@
-import { buildTree } from "./lib/helpers.js";
+import { buildTree, getSuccessor } from "./lib/helpers.js";
 
 /**
  * Builds a balanced binary search tree (BST) from a sorted list of numbers. The function ensures that the resulting tree is as balanced as possible.
@@ -127,6 +127,12 @@ export class Tree {
 
         if (node.right && !node.left) {
           return node.right;
+        }
+
+        if (node.left && node.right) {
+          const successor = getSuccessor(node);
+          node.data = successor.data;
+          node.right = _deleteRecursive(node.right, successor.data);
         }
       }
 
