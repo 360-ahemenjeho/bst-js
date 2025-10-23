@@ -33,3 +33,11 @@ test("delete single child node", () => {
   const newTree = tree.root;
   assert.equal(newTree.left.data, 1);
 });
+
+test("delete node with two child nodes (where successor is a leaf node)", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  tree.delete(5);
+  const newTree = tree.root;
+  assert.equal(newTree.data, 6);
+  assert.equal(newTree.right.left, null);
+});
