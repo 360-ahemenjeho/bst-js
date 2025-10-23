@@ -53,3 +53,17 @@ export function prettyPrint(node, prefix = "", isLeft = true) {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 }
+
+/**
+ * Finds the successor of the node to be deleted.
+ *
+ * @param {Node} node - This is the current node to be deleted
+ * @returns {Node} The new successor node to replace current node to be deleted
+ */
+export function getSuccessor(node) {
+  node = node.right;
+  while (node.left) {
+    node = node.left;
+  }
+  return node;
+}
