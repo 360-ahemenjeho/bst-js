@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Tree } from "../src/tree.js";
-import { prettyPrint } from "../src/lib/helpers.js";
 
 test("builds a valid tree from an array", () => {
   const tree = new Tree([3, 1, 2]);
