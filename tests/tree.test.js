@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Tree } from "../src/tree.js";
+import { prettyPrint } from "../src/lib/helpers.js";
 
 test("builds a valid tree from an array", () => {
   const tree = new Tree([3, 1, 2]);
@@ -40,4 +41,19 @@ test("delete node with two child nodes (where successor is a leaf node)", () => 
   const newTree = tree.root;
   assert.equal(newTree.data, 6);
   assert.equal(newTree.right.left, null);
+});
+
+test("find node of a given value (valid value))", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const dataNode = tree.find(2);
+  assert.equal(dataNode.right, null);
+  assert.equal(dataNode.left.left, null);
+  assert.equal(dataNode.left.right, null);
+  assert.equal(dataNode.left.data, 1);
+});
+
+test("find node of a given value (invalid value))", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const dataNode = tree.find(34);
+  assert.equal(dataNode, null);
 });
