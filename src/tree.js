@@ -142,4 +142,38 @@ export class Tree {
     const newRoot = _deleteRecursive(this.root, data);
     this.root = newRoot;
   }
+
+  /**
+   * Deletes a node containing the specified value from the binary search tree.
+   *
+   * - If the value does not exist in the tree, null is returned.
+   *
+   * @param {number} data - The value of target node.
+   * @returns {Node | null}
+   */
+  find(data) {
+    /**
+     * Recursively find the node to return.
+     * @private
+     * @param {Node} node  - the current node been examind.
+     * @param {number} data - value of target node
+     * @returns {Node}
+     */
+    function _findRecursive(node, data) {
+      if (node === null) {
+        return null;
+      }
+
+      if (data === node.data) return node;
+
+      if (data < node.data) {
+        return _findRecursive(node.left, data);
+      }
+      if (data > node.data) {
+        return _findRecursive(node.right, data);
+      }
+    }
+
+    return _findRecursive(this.root, data);
+  }
 }
