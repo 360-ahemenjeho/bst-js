@@ -176,4 +176,19 @@ export class Tree {
 
     return _findRecursive(this.root, data);
   }
+
+  /**
+   * Provides callback for level order traversal of each node.
+   * @param {(node: Node) => void} callback
+   * @returns {void}
+   */
+  levelOrderForEach(callback) {
+    const queue = [this.root];
+    while (queue.length > 0) {
+      const current = queue.shift();
+      callback(current);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+  }
 }
