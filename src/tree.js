@@ -191,4 +191,23 @@ export class Tree {
       if (current.right) queue.push(current.right);
     }
   }
+
+  /**
+   * Provides callback for preorder traversal of each node.
+   * @param {(node: Node) => void} callback
+   * @returns {void}
+   */
+  preOrderForEach(callback) {
+    /**
+     * @param {Node} node
+     * @returns {void}
+     */
+    function traverse(node) {
+      if (node === null) return;
+      callback(node);
+      traverse(node.left);
+      traverse(node.right);
+    }
+    traverse(this.root);
+  }
 }
