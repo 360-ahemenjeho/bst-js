@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Tree } from "../src/tree.js";
+import { prettyPrint } from "../src/lib/helpers.js";
 
 test("builds a valid tree from an array", () => {
   const tree = new Tree([3, 1, 2]);
@@ -55,4 +56,13 @@ test("find node of a given value (invalid value))", () => {
   const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
   const dataNode = tree.find(34);
   assert.equal(dataNode, null);
+});
+
+test("level order foreach", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const result = [];
+  tree.levelOrderForEach((node) => {
+    result.push(node.data);
+  });
+  assert.equal(result.join(","), "5,3,7,2,4,6,8,1");
 });
