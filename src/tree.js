@@ -229,4 +229,23 @@ export class Tree {
     }
     traverse(this.root);
   }
+
+  /**
+   * Provides callback for postorder traversal of each node.
+   * @param {(node: Node) => void} callback
+   * @returns {void}
+   */
+  postOrderForEach(callback) {
+    /**
+     * @param {Node} node
+     * @returns {void}
+     */
+    function traverse(node) {
+      if (node === null) return;
+      traverse(node.left);
+      traverse(node.right);
+      callback(node);
+    }
+    traverse(this.root);
+  }
 }
