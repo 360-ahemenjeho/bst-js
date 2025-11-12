@@ -75,3 +75,12 @@ test("preorder foreach", () => {
   });
   assert.equal(result.join(","), "5,3,2,1,4,7,6,8");
 });
+
+test("inorder foreach", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const result = [];
+  tree.inOrderForEach((node) => {
+    result.push(node.data);
+  });
+  assert.equal(result.join(","), "1,2,3,4,5,6,7,8");
+});
