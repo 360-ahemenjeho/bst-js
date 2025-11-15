@@ -104,3 +104,18 @@ test("get given node depth", () => {
   const depth = tree.depth(2);
   assert.equal(depth, 2);
 });
+
+test("check balanced tree", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const isBalanced = tree.balanced();
+  assert.equal(isBalanced, true);
+});
+
+test("rebalance", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  tree.delete(8);
+  tree.delete(4);
+  tree.delete(6);
+  tree.rebalance();
+  assert.equal(tree.balanced(), true);
+});
