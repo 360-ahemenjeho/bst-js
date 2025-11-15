@@ -254,10 +254,10 @@ export class Tree {
 
   /**
    * Get the height of given tree node
-   * @param {number} value
+   * @param {number} data
    * @returns {number}
    */
-  height(value) {
+  height(data) {
     /**
      * @private Get Height of given node.
      * @param {Node} node
@@ -267,7 +267,25 @@ export class Tree {
       if (node === null) return 0;
       return Math.max(_getHeight(node.left), _getHeight(node.right)) + 1;
     }
-    const valueNode = this.find(value);
+    const valueNode = this.find(data);
     return _getHeight(valueNode);
+  }
+
+  /**
+   * Get the depth of a given value.
+   * @param {number} data
+   * @returns {number}
+   */
+  depth(data) {
+    let depth = 0;
+    let node = this.root;
+    while (node !== null) {
+      if (data === node.data) {
+        return depth;
+      }
+      node = data < node.data ? node.left : node.right;
+      depth++;
+    }
+    return -1;
   }
 }
