@@ -253,7 +253,7 @@ export class Tree {
   }
 
   /**
-   * Get the height of given tree node
+   * Get the height of given tree node.
    * @param {number} data
    * @returns {number}
    */
@@ -287,5 +287,43 @@ export class Tree {
       depth++;
     }
     return -1;
+  }
+
+  /**
+   * Check if tree is balanced.
+   * @returns {boolean}
+   */
+  balanced() {
+    /**
+     * @private
+     * Returns the height of the subtree if balanced, or -1 if the subtree is unbalanced.
+     * @param {Node} node
+     * @returns {number} height or -1.
+     */
+    function check(node) {
+      if (node === null) return 0;
+      const left = check(node.left);
+      if (left === -1) return -1;
+      const right = check(node.right);
+      if (right === -1) return -1;
+      if (Math.abs(left - right) > 1) return -1;
+      return Math.max(left, right) + 1;
+    }
+
+    return check(this.root) !== -1;
+  }
+
+  /**
+   * Rebalance tree.
+   * @returns {void}
+   */
+  rebalance() {
+    /**@type {number[]} */
+    const newList = [];
+    this.levelOrderForEach((node) => {
+      newList.push(node.data);
+    });
+    const rebuiltTree = buildTree(newList);
+    this.root = rebuiltTree;
   }
 }
