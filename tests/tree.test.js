@@ -93,3 +93,9 @@ test("postorder foreach", () => {
   });
   assert.equal(result.join(","), "1,2,4,3,6,8,7,5");
 });
+
+test("get given node height", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const height = tree.height(7);
+  assert.equal(height, 2);
+});
