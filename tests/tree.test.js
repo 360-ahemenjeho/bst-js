@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { Tree } from "../src/tree.js";
-import { prettyPrint } from "../src/lib/helpers.js";
 
 test("builds a valid tree from an array", () => {
   const tree = new Tree([3, 1, 2]);
@@ -98,4 +97,10 @@ test("get given node height", () => {
   const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
   const height = tree.height(7);
   assert.equal(height, 2);
+});
+
+test("get given node depth", () => {
+  const tree = new Tree([2, 7, 8, 1, 3, 4, 6, 5]);
+  const depth = tree.depth(2);
+  assert.equal(depth, 2);
 });
