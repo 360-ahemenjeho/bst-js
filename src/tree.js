@@ -58,7 +58,7 @@ export class Tree {
     /**
      * Recursively inserts a new value into the correct position in the tree.
      *
-     * @private
+     * @private Inner recursive insert.
      * @param {Node|null} node - The current node being examined.
      * @param {number} data - The value to insert.
      * @returns {Node} The updated node after insertion.
@@ -102,7 +102,7 @@ export class Tree {
      * - If the node has one child, it is replaced by that child.
      * - If the node has two children, it is replaced with its in-order successor (the smallest value in the right subtree).
      *
-     * @private
+     * @private Inner recursive deletion.
      * @param {Node|null} node - The current node being examined.
      * @param {number} data - The value to delete.
      * @returns {Node} The updated node after deletion.
@@ -154,7 +154,7 @@ export class Tree {
   find(data) {
     /**
      * Recursively find the node to return.
-     * @private
+     * @private Inner find resursion.
      * @param {Node} node  - the current node been examind.
      * @param {number} data - value of target node
      * @returns {Node}
@@ -199,16 +199,17 @@ export class Tree {
    */
   preOrderForEach(callback) {
     /**
+     * @private Traversal.
      * @param {Node} node
      * @returns {void}
      */
-    function traverse(node) {
+    function _traverse(node) {
       if (node === null) return;
       callback(node);
-      traverse(node.left);
-      traverse(node.right);
+      _traverse(node.left);
+      _traverse(node.right);
     }
-    traverse(this.root);
+    _traverse(this.root);
   }
 
   /**
@@ -218,16 +219,17 @@ export class Tree {
    */
   inOrderForEach(callback) {
     /**
+     * @private Traversal.
      * @param {Node} node
      * @returns {void}
      */
-    function traverse(node) {
+    function _traverse(node) {
       if (node === null) return;
-      traverse(node.left);
+      _traverse(node.left);
       callback(node);
-      traverse(node.right);
+      _traverse(node.right);
     }
-    traverse(this.root);
+    _traverse(this.root);
   }
 
   /**
@@ -237,15 +239,35 @@ export class Tree {
    */
   postOrderForEach(callback) {
     /**
+     * @private Traversal.
      * @param {Node} node
      * @returns {void}
      */
-    function traverse(node) {
+    function _traverse(node) {
       if (node === null) return;
-      traverse(node.left);
-      traverse(node.right);
+      _traverse(node.left);
+      _traverse(node.right);
       callback(node);
     }
-    traverse(this.root);
+    _traverse(this.root);
+  }
+
+  /**
+   * Get the height of given tree node
+   * @param {number} value
+   * @returns {number}
+   */
+  height(value) {
+    /**
+     * @private Get Height of given node.
+     * @param {Node} node
+     * @returns {number}
+     */
+    function _getHeight(node) {
+      if (node === null) return 0;
+      return Math.max(_getHeight(node.left), _getHeight(node.right)) + 1;
+    }
+    const valueNode = this.find(value);
+    return _getHeight(valueNode);
   }
 }
